@@ -37,7 +37,7 @@ module greater_4bit_top(
     logic eq_MSB_result;
     logic gr_LSB_result;
 
-    greater_2bit_top gr_MSB_comp( 
+    greater_2bit gr_MSB_comp( 
         .A1(A3_4),
         .A0(A2_4),
         .B1(B3_4),
@@ -46,7 +46,7 @@ module greater_4bit_top(
         .onboardLED()
     );
     
-    equal_2bit_top eq_MSB_comp( 
+    equal_2bit eq_MSB_comp( 
         .A1(A3_4),
         .A0(A2_4),
         .B1(B3_4),
@@ -55,7 +55,7 @@ module greater_4bit_top(
         .onboardLED()
     );
     
-        greater_2bit_top gr_LSB_comp( 
+        greater_2bit gr_LSB_comp( 
         .A1(A1_4),
         .A0(A0_4),
         .B1(B1_4),
