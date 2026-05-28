@@ -65,6 +65,6 @@ module greater_4bit_top(
     );
     
     assign externalLED = (gr_MSB_result) | (eq_MSB_result & gr_LSB_result); // A > B if 2-bit MSBs are greater, or if 2-bit MSBs are equal and 2-bit LSBs are greater
-    assign onboardLED = ~externalLED;
+    assign onboardLED = ~externalLED; // onboardLED is inverse of externalLED for visual verification of 0 state
     
 endmodule
