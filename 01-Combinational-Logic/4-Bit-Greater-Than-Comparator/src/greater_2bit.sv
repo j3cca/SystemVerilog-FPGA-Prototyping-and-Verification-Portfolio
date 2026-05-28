@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module greater_2bit_top(
+module greater_2bit(
     input logic A1, //MSB1
     input logic A0, //LSB1
     input logic B1, //MSB2
