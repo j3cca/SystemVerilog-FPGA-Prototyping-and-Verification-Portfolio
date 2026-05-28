@@ -52,10 +52,10 @@ $finish called at time : 2560 ns
 **Schematic:**  
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_schematic.png)
 
-**FPGA Utilization:**
+**FPGA Utilization:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_utilization.png)
 
-
-### Directory Table of Contents
+## Directory Table of Contents
 <pre>
 4-bit Greater-Than Comparator/
 │
