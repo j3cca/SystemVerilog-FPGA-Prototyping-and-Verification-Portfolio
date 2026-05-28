@@ -5,6 +5,8 @@ A collection of synthesizable SystemVerilog modules and self-checking testbenche
 
 Developed by Jessica Milner during Summer 2026 using "FPGA Prototyping by SystemVerilog Examples" by Pong P. Chu and "SystemVerilog for Verification" by Chris Spear and Greg Tumbush.
 
+<br>
+
 ## Table of Contents
 ### 01- Combinational Logic
 * 4-Bit Greater-Than Comparator
