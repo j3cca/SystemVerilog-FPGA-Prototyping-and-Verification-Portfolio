@@ -9,6 +9,7 @@ Each module was verified with a self-checking testbench that iterated through al
 The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, 8 DIP-switches were wired to accept the inputs and an external LED was wired to output the result.
 
 **Block Diagram:**  
+<br>
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_block_diagram.jpg)  
 > *The 4-bit greater-than comparator accepts two 4-bit inputs (called A and B). The most significant bits of the inputs are fed into both the MSB greater-than comparator and the MSB equal-to comparator. The least significant bits of the inputs are fed into the LSB greater-than comparator.*
 
