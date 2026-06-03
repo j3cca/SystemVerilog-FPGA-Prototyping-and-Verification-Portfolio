@@ -1,6 +1,6 @@
 # 4-Bit Greater-Than Comparator
 
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_bit_comparator.gif)  
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_bit_comparator.gif" alt="Demonstration" width="400"> 
 
 > *The above demonstration is for a 4-bit greater than comparator, which compares value A with value B and lights up the external LED if true, and the on-board LED if false. This design was implemented on the CMOD S7.* 
 
