@@ -1,26 +1,27 @@
 # 4-to-16 Decoder
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif)
-## Project Overview
-**Description:** This project consists of a 4-bit greater-than comparator written in RTL using only gate-level logical operators. The 4-bit greater-than comparator accepts two 4-bit inputs and outputs 1 if input A is greater than B, and 0 if A is not greater than B. 
+![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif)  
 
-The 4-bit comparator is composed of two 2-bit greater-than comparator modules and one 2-bit equal-to module joined using a minimal number of logic gates. 
+> *The above demonstration is for a 3-to-8 decoder, which was constructed using two 2-to-4 decoders and implemented on the CMOD S7.* 
+
+## Project Overview
+**Description:** This project consists of a 4-to-16 decoder written in RTL using only gate-level logical operators. The 4-to-16 decoder is composed of four 2-to-4 decoders, which each drive 4 outputs. The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select.
 
 Each module was verified with a self-checking testbench that iterated through all possible input combinations to ensure rigorous correctness.
 
-The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, 8 DIP-switches were wired to accept the inputs and an external LED was wired to output the result.
+To save space on the breadboard for future additions, a 3-to-8 decoder was constructed using two 2-to-4 decoders, which would require only 8 LEDs to indicate the output. The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, three DIP-switches were wired to accept the inputs and eight external LEDs were wired to output the result.
 
 **Block Diagram:**  
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_block_diagram.jpg)  
-> *The 4-bit greater-than comparator accepts two 4-bit inputs (called A and B). The most significant bits of the inputs are fed into both the MSB greater-than comparator and the MSB equal-to comparator. The least significant bits of the inputs are fed into the LSB greater-than comparator.*
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_block_diagram.jpg)  
+> *The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select. The same select bits are fed into each 2-to-4 decoder, and the enable bits are combined using a minimal number of logic gates to select the appropriate decoder, then fed into that decoder.*
 
-> *The outputs of these comparators are joined with glue logic, outputting from the 4-bit module a 1 if A is greater than B, and 0 if A is not greater than B.* 
+> *Each decoder will only output a result when recieving the proper enable signal, so only one decoder outputs at a time.* 
 
 ## Simulation
 **Verification Summary:** To verify the functionality of each module, self-checking testbenches were constructed using for-loops to iterate through all possible input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
 
 **Simulation Waveform**  
-![image](.images/greater_4bit_simulation_waveforms.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_simulation_waveforms.png)
 > *This image shows the full simulation waveform for all inputs of A and B. The onboardLED is inverted from externalLED to provide a visual reference for inputs in which A is not greater than B.*
 
 **Simulation Log Snippet**
@@ -55,10 +56,10 @@ $finish called at time : 160 ns
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_schematic.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_schematic.png)
 
 **FPGA Utilization:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_utilization.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_utilization.png)
 
 ## Reflection
 
@@ -67,13 +68,13 @@ $finish called at time : 160 ns
 4-bit Greater-Than Comparator/
 │
 ├── src/
-│   ├── <a href="./src/greater_4bit_top.sv">greater_4bit_top.sv</a>
-│   ├── <a href="./src/greater_2bit.sv">greater_2bit.sv</a>
-│   └── <a href="./src/equal_2bit.sv">equal_2bit.sv</a>
+│   ├── <a href="./src/decoder4_16.sv">decoder4_16.sv</a>
+│   ├── <a href="./src/decoder3_8.sv">decoder3_8.sv</a>
+│   └── <a href="./src/decoder2_4.sv">decoder2_4.sv</a>
 │
 ├── sim/
-│   ├── <a href="./sim/TB_greater_4bit.sv">TB_greater_4bit.sv</a>
-│   └── <a href="./sim/TB_greater_4bit_behav.wcfg">TB_greater_4bit_behav.wcfg</a>
+│   ├── <a href="./sim/TB_decoder_4_16.sv">TB_decoder_4_16.sv</a>
+│   └── <a href="./sim/TB_decoder4_16_behav.wcfg">TB_decoder4_16_behav.wcfg</a>
 │
 ├── constraints/
 │   └── <a href="./constraints/Cmod-S7-25-Master.xdc">Cmod-S7-25-Master.xdc</a>
