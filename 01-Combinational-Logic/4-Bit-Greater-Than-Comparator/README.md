@@ -2,7 +2,7 @@
 
 <img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_bit_comparator.gif" alt="Demonstration" width="400"> 
 
-> *The above demonstration is for a 4-bit greater than comparator, which compares value A with value B and lights up the external LED if A > B, and the on-board LED if A !> B. This design was implemented on the CMOD S7.* 
+> *The above demonstration is for a 4-bit greater than comparator, which compares value A with value B and lights up the external LED if A > B, and the on-board LED if A !> B. This design was implemented on a CMOD S7.* 
 
 ## Project Overview
 **Description:** This project consists of a 4-bit greater-than comparator written in RTL using only gate-level logical operators. The 4-bit greater-than comparator accepts two 4-bit inputs and outputs 1 if input A is greater than B, and 0 if A is not greater than B. 
