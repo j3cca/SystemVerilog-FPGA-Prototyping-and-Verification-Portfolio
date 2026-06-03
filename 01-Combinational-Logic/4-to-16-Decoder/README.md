@@ -26,22 +26,29 @@ The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, 8 D
 <details>
 <summary><i>Click to expand</i></summary>
 
-``` Time resolution is 1 ps  
--- Starting Test Bench --  
-PASS test: 0000 > 0000 (0)  
-PASS test: 0000 > 0001 (0)  
-PASS test: 0000 > 0010 (0)  
-PASS test: 0000 > 0011 (0)   
-...  
-PASS test: 1111 > 1100 (1)  
-PASS test: 1111 > 1101 (1)  
-PASS test: 1111 > 1110 (1)  
-PASS test: 1111 > 1111 (0)  
--- Test Bench Summary --  
-Pass count: 256  
-Fail count: 0  
-All tests passed!  
-$finish called at time : 2560 ns
+``` Time resolution is 1 ps
+-- Starting Test Bench --
+PASS test: 00 outputs 0000000000000001 (en = 00)
+PASS test: 01 outputs 0000000000000010 (en = 00)
+PASS test: 10 outputs 0000000000000100 (en = 00)
+PASS test: 11 outputs 0000000000001000 (en = 00)
+PASS test: 00 outputs 0000000000010000 (en = 01)
+PASS test: 01 outputs 0000000000100000 (en = 01)
+PASS test: 10 outputs 0000000001000000 (en = 01)
+PASS test: 11 outputs 0000000010000000 (en = 01)
+PASS test: 00 outputs 0000000100000000 (en = 10)
+PASS test: 01 outputs 0000001000000000 (en = 10)
+PASS test: 10 outputs 0000010000000000 (en = 10)
+PASS test: 11 outputs 0000100000000000 (en = 10)
+PASS test: 00 outputs 0001000000000000 (en = 11)
+PASS test: 01 outputs 0010000000000000 (en = 11)
+PASS test: 10 outputs 0100000000000000 (en = 11)
+PASS test: 11 outputs 1000000000000000 (en = 11)
+-- Test Bench Summary --
+Pass count: 16
+Fail count: 0
+All tests passed!
+$finish called at time : 160 ns
 ```
 </details>
 
