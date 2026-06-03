@@ -1,5 +1,5 @@
 # 4-to-16 Decoder
-![demonstration](./images/3_to_8_decoder.mov)
+![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.mov)
 ## Project Overview
 **Description:** This project consists of a 4-bit greater-than comparator written in RTL using only gate-level logical operators. The 4-bit greater-than comparator accepts two 4-bit inputs and outputs 1 if input A is greater than B, and 0 if A is not greater than B. 
 
@@ -11,7 +11,7 @@ The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, 8 D
 
 **Block Diagram:**  
 <br>
-![image](./images/greater_4bit_block_diagram.jpg)  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_block_diagram.jpg)  
 > *The 4-bit greater-than comparator accepts two 4-bit inputs (called A and B). The most significant bits of the inputs are fed into both the MSB greater-than comparator and the MSB equal-to comparator. The least significant bits of the inputs are fed into the LSB greater-than comparator.*
 
 > *The outputs of these comparators are joined with glue logic, outputting from the 4-bit module a 1 if A is greater than B, and 0 if A is not greater than B.* 
@@ -48,10 +48,10 @@ $finish called at time : 2560 ns
 
 ## Implementation  
 **Schematic:**  
-![image](.images/greater_4bit_schematic.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_schematic.png)
 
 **FPGA Utilization:**  
-![image](.images/greater_4bit_utilization.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_utilization.png)
 
 ## Directory Table of Contents
 <pre>
