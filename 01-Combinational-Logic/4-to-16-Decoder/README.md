@@ -1,5 +1,5 @@
 # 4-to-16 Decoder
-![demonstration](https://drive.google.com/file/d/1HWb03yb06KDFXc5sz8bswd5Ew4PAlAeC/view?usp=share_link)  
+![demonstration](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3JxZmQyNnNjYXZxNjd6YWdneHVtMzV6MjFodm8yYmE2NTBkcmJzOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/My8VQkTXiITX8Ail2Y/giphy.gif)  
 
 > *The above demonstration is for a 3-to-8 decoder, which was constructed using two 2-to-4 decoders and implemented on the CMOD S7.* 
 
