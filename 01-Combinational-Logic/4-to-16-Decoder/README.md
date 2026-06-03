@@ -1,5 +1,5 @@
 # 4-to-16 Decoder
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.mov)
+![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif)
 ## Project Overview
 **Description:** This project consists of a 4-bit greater-than comparator written in RTL using only gate-level logical operators. The 4-bit greater-than comparator accepts two 4-bit inputs and outputs 1 if input A is greater than B, and 0 if A is not greater than B. 
 
