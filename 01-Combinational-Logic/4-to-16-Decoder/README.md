@@ -22,7 +22,7 @@ To save space on the breadboard for future additions, a 3-to-8 decoder was const
 
 **Simulation Waveform**  
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_simulation_waveforms.png)
-> *This image shows the full simulation waveform for all inputs of A and B. The onboardLED is inverted from externalLED to provide a visual reference for inputs in which A is not greater than B.*
+> *This image shows the full simulation waveform for all combinations of select bits and enable signals.*
 
 **Simulation Log Snippet**
 <details>
