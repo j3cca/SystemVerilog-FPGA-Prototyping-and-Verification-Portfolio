@@ -1,7 +1,7 @@
 # 4-to-16 Decoder
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif)  
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif" alt="Gif Demonstration of 3-to-8 Decoder" width="400">
 
-> *The above demonstration is for a 3-to-8 decoder, which was constructed using two 2-to-4 decoders and implemented on the CMOD S7.* 
+> *The above demonstration is for a 3-to-8 decoder, which was implemented on a CMOD S7. The enable signal determines whether to select from outputs 0-3 (enable = 0) or outputs 4-7 (enable = 1), and the select bits choose which specific LED should light up.* 
 
 ## Project Overview
 **Description:** This project consists of a 4-to-16 decoder written in RTL using only gate-level logical operators. The 4-to-16 decoder is composed of four 2-to-4 decoders, which each drive 4 outputs. The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select.
