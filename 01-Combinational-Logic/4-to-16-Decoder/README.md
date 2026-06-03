@@ -1,5 +1,5 @@
 # 4-to-16 Decoder
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/3_to_8_decoder.gif)  
+![demonstration](https://drive.google.com/file/d/1HWb03yb06KDFXc5sz8bswd5Ew4PAlAeC/view?usp=share_link)  
 
 > *The above demonstration is for a 3-to-8 decoder, which was constructed using two 2-to-4 decoders and implemented on the CMOD S7.* 
 

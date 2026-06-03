@@ -1,6 +1,6 @@
 # 4-Bit Greater-Than Comparator
 
-![demonstration](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_bit_comparator.gif)  
+![demonstration](https://drive.google.com/file/d/1TCWT32hr8hYfiC29VGm63dM5tTsm5Scw/view?usp=sharing)  
 
 > *The above demonstration is for a 3-to-8 decoder, which was constructed using two 2-to-4 decoders and implemented on the CMOD S7.* 
 
