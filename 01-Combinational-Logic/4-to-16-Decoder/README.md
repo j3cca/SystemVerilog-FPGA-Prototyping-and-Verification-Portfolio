@@ -15,7 +15,7 @@ To save space on the breadboard for future additions, a 3-to-8 decoder was const
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_block_diagram.jpg)  
 > *The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select. The same select bits are fed into each 2-to-4 decoder, and the enable bits are combined using a minimal number of logic gates to select the appropriate decoder, then fed into that decoder.*
 
-> *Each decoder will only output a result when recieving the proper enable signal, so only one decoder outputs at a time.* 
+> *Each decoder will only output a result when receiving the proper enable signal, so only one decoder outputs at a time.* 
 
 ## Simulation
 **Verification Summary:** To verify the functionality of each module, self-checking testbenches were constructed using for-loops to iterate through all possible input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
@@ -62,10 +62,11 @@ $finish called at time : 160 ns
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_utilization.png)
 
 ## Reflection
+Overall, I'm satisfied with my implementation. However, I realized that I could have used another 2-to-4 decoder to transmit the appropriate enable signals rather than using a logic gate implementation. This would make a tree style structure that would be more modular and easier to update for future use.
 
 ## Directory Table of Contents
 <pre>
-4-bit Greater-Than Comparator/
+4-to-16 Decoder/
 │
 ├── src/
 │   ├── <a href="./src/decoder4_16.sv">decoder4_16.sv</a>
