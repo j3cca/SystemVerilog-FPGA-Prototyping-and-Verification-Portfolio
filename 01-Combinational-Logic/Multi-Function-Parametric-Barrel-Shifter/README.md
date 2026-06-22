@@ -1,21 +1,23 @@
 # Multi-Function Parametric Barrel Shifter
 
 ## Project Overview
-**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. I compared the number of logic cells and the propagation delays of both implementations to determine which implementation used fewer resources. I then parametrized the second implementation to accept any number of input bits, allowing for reusability in future projects.
+**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right shifter and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. 
 
-**Block Diagram:**  
+I compared the number of logic cells and the propagation delays of both implementations to determine which implementation used fewer resources. I then parametrized the second implementation to accept any number of input bits, allowing for reusability in future projects.
+
+**Block Diagram:**
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_block_diagram.jpg)  
-> *The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select. The same select bits are fed into each 2-to-4 decoder, and the enable bits are combined using a minimal number of logic gates to select the appropriate decoder, then fed into that decoder.*
-
-> *Each decoder will only output a result when receiving the proper enable signal, so only one decoder outputs at a time.* 
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png)  
+> *This multi-function barrel shifter accepts an input, an amount to be shifted, and a signal for whether the shift is a left shift or a right shift. Pre and post-reversing circuits allow this multi-function barrel shifter to be constructed using only a single rotate-right shifter, while still allowing the shifting to both the right and left.*
 
 ## Simulation
 **Verification Summary:** To verify the functionality of each design, three self-checking testbenches were constructed using for-loops to iterate through 1000 random input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
 
+To avoid the tautology problem, I verified the hardware against an independent software algorithm. The RTL uses a `2N` concatenation-and-truncate method for area optimization, while the testbench calculates the expected output using a shift-and-mask algorithm. This will ensure that any errors in the RTL are not repeated in the testbench.
+
 **Simulation Waveform**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_simulation_waveforms.png)
-> *This image shows the full simulation waveform for all combinations of select bits and enable signals.*
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_simulation_waveforms.png)
+> *This image shows a portion of the simulation waveform with matching outputs from the TB and UUT.*
 
 **Simulation Log Snippet**
 <details>
@@ -23,52 +25,51 @@
 
 ``` Time resolution is 1 ps
 -- Starting Test Bench --
-PASS test: 00 outputs 0000000000000001 (en = 00)
-PASS test: 01 outputs 0000000000000010 (en = 00)
-PASS test: 10 outputs 0000000000000100 (en = 00)
-PASS test: 11 outputs 0000000000001000 (en = 00)
-PASS test: 00 outputs 0000000000010000 (en = 01)
-PASS test: 01 outputs 0000000000100000 (en = 01)
-PASS test: 10 outputs 0000000001000000 (en = 01)
-PASS test: 11 outputs 0000000010000000 (en = 01)
-PASS test: 00 outputs 0000000100000000 (en = 10)
-PASS test: 01 outputs 0000001000000000 (en = 10)
-PASS test: 10 outputs 0000010000000000 (en = 10)
-PASS test: 11 outputs 0000100000000000 (en = 10)
-PASS test: 00 outputs 0001000000000000 (en = 11)
-PASS test: 01 outputs 0010000000000000 (en = 11)
-PASS test: 10 outputs 0100000000000000 (en = 11)
-PASS test: 11 outputs 1000000000000000 (en = 11)
+Test number         100 executing...
+Test number         200 executing...
+Test number         300 executing...
+Test number         400 executing...
+Test number         500 executing...
+Test number         600 executing...
+Test number         700 executing...
+Test number         800 executing...
+Test number         900 executing...
 -- Test Bench Summary --
-Pass count: 16
+Pass count: 1000
 Fail count: 0
 All tests passed!
-$finish called at time : 160 ns
+$finish called at time : 10 us 
 ```
 </details>
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_schematic.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic.png)
 
-**FPGA Utilization:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_utilization.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic_zoom.png)
+
+**FPGA Utilization and Propagation Delay:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png)
+
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png)
 
 ## Reflection
-Overall, I'm satisfied with my implementation. However, I realized that I could have used another 2-to-4 decoder to transmit the appropriate enable signals rather than using a logic gate implementation. This would make a tree style structure that would be more modular and easier to update for future use.
+My initial goal with implementing this project in two ways was to determine which approach utilized the fewest resources. However, due to innovations in hardware (particularly in this instance, the use of 6-input LUTs) and software (particularly, Vivado's ability to optimize a design), both implementations used the same minimum number of slices. If I was working with an older board or a software with less optimization capability, this exercise would have been more illustrative.
 
 ## Directory Table of Contents
 <pre>
-4-to-16 Decoder/
+Multi-Function Parametric Barrel Shifter/
 │
 ├── src/
-│   ├── <a href="./src/decoder4_16.sv">decoder4_16.sv</a>
-│   ├── <a href="./src/decoder3_8.sv">decoder3_8.sv</a>
-│   └── <a href="./src/decoder2_4.sv">decoder2_4.sv</a>
+│   ├── <a href="./src/parametric_barrel_shifter.sv">parametric_barrel_shifter.sv</a>
+│   ├── <a href="./src/barrel_8_bit_alt.sv">barrel_8_bit_alt.sv</a>
+│   └── <a href="./src/barrel_8_bit.sv">barrel_8_bit.sv</a>
 │
 ├── sim/
-│   ├── <a href="./sim/TB_decoder_4_16.sv">TB_decoder_4_16.sv</a>
-│   └── <a href="./sim/TB_decoder4_16_behav.wcfg">TB_decoder4_16_behav.wcfg</a>
+│   ├── <a href="./sim/TB_parametric_barrel_shifter.sv">TB_parametric_barrel_shifter.sv</a>
+│   ├── <a href="./sim/TB_barrel_8_bit_alt.sv">TB_barrel_8_bit_alt.sv</a>
+│   ├── <a href="./sim/TB_barrel_8_bit.sv">TB_barrel_8_bit.sv</a>
+│   └──<a href="./sim/TB_parametric_barrel_shifter.wcfg">TB_parametric_barrel_shifter.wcfg</a>
 │
 ├── constraints/
 │   └── <a href="./constraints/Cmod-S7-25-Master.xdc">Cmod-S7-25-Master.xdc</a>
