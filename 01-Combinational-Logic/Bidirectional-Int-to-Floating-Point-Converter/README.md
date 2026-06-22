@@ -1,21 +1,23 @@
 # Bidirectional Int to Floating Point Converter
 
 ## Project Overview
-**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right shifter and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. 
+**Description:** For this project, I designed and verified a bidirectional Integer-to-Floating-Point conversion pipeline. This simulates the data-formatting stage of a medical DSP pipeline, where raw 8-bit signed integer sensor data is converted into a high-precision floating-point format for algorithmic processing, and then converted back for hardware output.
 
-I compared the number of logic cells and the propagation delays of both implementations to determine which implementation used fewer resources. I then parametrized the second implementation to accept any number of input bits, allowing for reusability in future projects.
+Rather than utilizing the Chu textbook's simplified format, I engineered a custom 13-bit IEEE-esque format. This required routing to handle an implicit hidden mantissa bit and a 4-bit exponent bias, which allows for more data to be contained within fewer bits, increasing the precision and range of the floating point values. I also included overflow and underflow flags in the decoder to account for the asymmetrical limits of 8-bit 2's Complement arithmetic.
 
-**Block Diagram:**
+**Block Diagram:** FINISH
 <br>
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png)  
-> *This multi-function barrel shifter accepts an input, an amount to be shifted, and a signal for whether the shift is a left shift or a right shift. Pre and post-reversing circuits allow this multi-function barrel shifter to be constructed using only a single rotate-right shifter, while still allowing the shifting to both the right and left.*
+> *The pipeline consists of two main modules. The `int_to_fp` encoder extracts the sign, takes the absolute magnitude, then uses a priority encoder to find the leading '1', which is used to calculate the exponent with bias. I used a barrel shifter to align the mantissa while hiding the leading bit.*
+
+>*The `fp_to_int` decoder reverses this process by un-biasing the exponent, restoring the hidden '1' (or 0 in the case of denormal numbers), shifting the mantissa back into an integer format, and applying a Two's Complement inverter if the original sign bit was negative. It also includes parallel logic to flag underflow (uf) and overflow (of) conditions.*
 
 ## Simulation
-**Verification Summary:** To verify the functionality of each design, three self-checking testbenches were constructed using for-loops to iterate through 1000 random input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
+**Verification Summary:** To ensure mathematical integrity without relying on a tautological testbench, I implemented a Built-In Self-Test Loopback architecture. 
 
-To avoid the tautology problem, I verified the hardware against an independent software algorithm. The RTL uses a `2N` concatenation-and-truncate method for area optimization, while the testbench calculates the expected output using a shift-and-mask algorithm. This will ensure that any errors in the RTL are not repeated in the testbench.
+The testbench instantiates both the encoder and decoder back-to-back. It exhaustively tests the 8-bit signed integer space (-128 to 127), feeding the output of the encoder directly into the input of the decoder. A self-checking assertion guarantees that the input and output match, mathematically proving that no data is lost to truncation or rounding errors during the bidirectional conversion. It also strictly verifies that the underflow and overflow flags remain low for valid data.
 
-**Simulation Waveform**  
+**Simulation Waveform**  FINISH
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_simulation_waveforms.png)
 > *This image shows a portion of the simulation waveform with matching outputs from the TB and UUT.*
 
@@ -25,20 +27,24 @@ To avoid the tautology problem, I verified the hardware against an independent s
 
 ``` Time resolution is 1 ps
 -- Starting Test Bench --
+Test number        -120 executing...
+Test number        -100 executing...
+Test number         -80 executing...
+Test number         -60 executing...
+Test number         -40 executing...
+Test number         -20 executing...
+Test number           0 executing...
+Test number          20 executing...
+Test number          40 executing...
+Test number          60 executing...
+Test number          80 executing...
 Test number         100 executing...
-Test number         200 executing...
-Test number         300 executing...
-Test number         400 executing...
-Test number         500 executing...
-Test number         600 executing...
-Test number         700 executing...
-Test number         800 executing...
-Test number         900 executing...
+Test number         120 executing...
 -- Test Bench Summary --
-Pass count: 1000
+Pass count: 256
 Fail count: 0
 All tests passed!
-$finish called at time : 10 us 
+$finish called at time : 2560 ns
 ```
 </details>
 
@@ -54,22 +60,23 @@ $finish called at time : 10 us
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png)
 
 ## Reflection
-My initial goal with implementing this project in two ways was to determine which approach utilized the fewest resources. However, due to innovations in hardware (particularly in this instance, the use of 6-input LUTs) and software (particularly, Vivado's ability to optimize a design), both implementations used the same minimum number of slices. If I was working with an older board or a software with less optimization capability, this exercise would have been more illustrative.
+This project was a great exercise in precision and understanding the design decisions behind different numerical representations and the implications of those decisions. 
+
+I realized that the integer inputs 1 and 0 are identical when examining only the mantissa and exponent fields due to the implicit leading 1. In order to reconcile this, I implemented a bias field in the exponent so that I could represent results with a leading 0, allowing for denormal numbers.
+
+The bit manipulation was a nice challenge, and I enjoyed how the project coalesced with the BIST Testbench. If I were to do this project again, however, I would implement a golden testbench for both modules individually to best verify that the designs perform as they should in all cases.
 
 ## Directory Table of Contents
 <pre>
 Bidirectional Int to Floating Point Converter/
 │
 ├── src/
-│   ├── <a href="./src/parametric_barrel_shifter.sv">parametric_barrel_shifter.sv</a>
-│   ├── <a href="./src/barrel_8_bit_alt.sv">barrel_8_bit_alt.sv</a>
-│   └── <a href="./src/barrel_8_bit.sv">barrel_8_bit.sv</a>
+│   ├── <a href="./src/int_to_fp.sv">int_to_fp.sv</a>
+│   └── <a href="./src/fp_to_int.sv">fp_to_int.sv</a>
 │
 ├── sim/
-│   ├── <a href="./sim/TB_parametric_barrel_shifter.sv">TB_parametric_barrel_shifter.sv</a>
-│   ├── <a href="./sim/TB_barrel_8_bit_alt.sv">TB_barrel_8_bit_alt.sv</a>
-│   ├── <a href="./sim/TB_barrel_8_bit.sv">TB_barrel_8_bit.sv</a>
-│   └── <a href="./sim/TB_parametric_barrel_shifter.wcfg">TB_parametric_barrel_shifter.wcfg</a>
+│   ├── <a href="./sim/BIST_loopback_TB.sv">BIST_loopback_TB.sv</a>
+│   └── <a href="./sim/BIST_loopback_behav.wcfg">BIST_loopback_behav.wcfg</a>
 │
 ├── constraints/
 │   └── <a href="./constraints/Cmod-S7-25-Master.xdc">Cmod-S7-25-Master.xdc</a>

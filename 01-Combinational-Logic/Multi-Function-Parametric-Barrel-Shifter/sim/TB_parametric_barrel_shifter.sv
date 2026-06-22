@@ -57,9 +57,9 @@ module TB_parametric_barrel_shifter #(
 
         //will iterate through 1000 random values
         for (int i = 0; i < 1000; i++) begin
-            TB_lr   = $urandom_range(0, 1); //constrained to 0 or 1
-            TB_amt  = $urandom_range(0, N - 1); //amt to shift constrained by N
-            TB_d_in = $urandom; //can be any value
+            TB_lr   = $urandom_range(0, 1);  //constrained to 0 or 1
+            TB_amt  = $urandom_range(0, N - 1);  //amt to shift constrained by N
+            TB_d_in = $urandom;  //can be any value
 
             //performs L or R shift based on amount
             if (TB_lr) begin
