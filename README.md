@@ -10,3 +10,6 @@ Developed by Jessica Milner during Summer 2026 using "FPGA Prototyping by System
 ## Table of Contents
 ### 01- Combinational Logic
 * 4-Bit Greater-Than Comparator
+* 4-to-16 Decoder
+* Multi-Function Parametric Barrel Shifter
+* Int to Floating Point/Floating Point to Int Converter
