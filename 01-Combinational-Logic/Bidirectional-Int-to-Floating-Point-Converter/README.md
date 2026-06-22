@@ -5,21 +5,22 @@
 
 Rather than utilizing the Chu textbook's simplified format, I engineered a custom 13-bit IEEE-esque format. This required routing to handle an implicit hidden mantissa bit and a 4-bit exponent bias, which allows for more data to be contained within fewer bits, increasing the precision and range of the floating point values. I also included overflow and underflow flags in the decoder to account for the asymmetrical limits of 8-bit 2's Complement arithmetic.
 
-**Block Diagram:** FINISH
+**Block Diagram:** 
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png)  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/int_to_fp_block_diagram.png)  
 > *The pipeline consists of two main modules. The `int_to_fp` encoder extracts the sign, takes the absolute magnitude, then uses a priority encoder to find the leading '1', which is used to calculate the exponent with bias. I used a barrel shifter to align the mantissa while hiding the leading bit.*
 
->*The `fp_to_int` decoder reverses this process by un-biasing the exponent, restoring the hidden '1' (or 0 in the case of denormal numbers), shifting the mantissa back into an integer format, and applying a Two's Complement inverter if the original sign bit was negative. It also includes parallel logic to flag underflow (uf) and overflow (of) conditions.*
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/fp_to_int_block_diagram.png)  
+> *The `fp_to_int` decoder reverses this process by un-biasing the exponent, restoring the hidden '1' (or 0 in the case of denormal numbers), shifting the mantissa back into an integer format, and applying a Two's Complement inverter if the original sign bit was negative. It also includes parallel logic to flag underflow (uf) and overflow (of) conditions.*
 
 ## Simulation
 **Verification Summary:** To ensure mathematical integrity without relying on a tautological testbench, I implemented a Built-In Self-Test Loopback architecture. 
 
 The testbench instantiates both the encoder and decoder back-to-back. It exhaustively tests the 8-bit signed integer space (-128 to 127), feeding the output of the encoder directly into the input of the decoder. A self-checking assertion guarantees that the input and output match, mathematically proving that no data is lost to truncation or rounding errors during the bidirectional conversion. It also strictly verifies that the underflow and overflow flags remain low for valid data.
 
-**Simulation Waveform**  FINISH
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_simulation_waveforms.png)
-> *This image shows a portion of the simulation waveform with matching outputs from the TB and UUT.*
+**Simulation Waveform**
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_simulation_waveforms.png)
+> *This image shows the final portion of the simulation waveform with all test cases passed*
 
 **Simulation Log Snippet**
 <details>
@@ -50,14 +51,10 @@ $finish called at time : 2560 ns
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic.png)
-
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic_zoom.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_schematic.png)
 
 **FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png)
-
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_resource_utilization.png)
 
 ## Reflection
 This project was a great exercise in precision and understanding the design decisions behind different numerical representations and the implications of those decisions. 
