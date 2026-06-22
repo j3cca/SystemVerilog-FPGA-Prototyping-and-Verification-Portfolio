@@ -1,7 +1,7 @@
 # Multi-Function Parametric Barrel Shifter
 
 ## Project Overview
-**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. I then parametrized the second implementation to accept any number of bits.
+**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. I compared the number of logic cells and the propagation delays of both implementations to determine which implementation used fewer resources. I then parametrized the second implementation to accept any number of input bits, allowing for reusability in future projects.
 
 **Block Diagram:**  
 <br>
@@ -11,7 +11,7 @@
 > *Each decoder will only output a result when receiving the proper enable signal, so only one decoder outputs at a time.* 
 
 ## Simulation
-**Verification Summary:** To verify the functionality of each module, self-checking testbenches were constructed using for-loops to iterate through all possible input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
+**Verification Summary:** To verify the functionality of each design, three self-checking testbenches were constructed using for-loops to iterate through 1000 random input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
 
 **Simulation Waveform**  
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_simulation_waveforms.png)
