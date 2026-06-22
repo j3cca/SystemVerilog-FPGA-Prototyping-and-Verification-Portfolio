@@ -69,7 +69,7 @@ Multi-Function Parametric Barrel Shifter/
 │   ├── <a href="./sim/TB_parametric_barrel_shifter.sv">TB_parametric_barrel_shifter.sv</a>
 │   ├── <a href="./sim/TB_barrel_8_bit_alt.sv">TB_barrel_8_bit_alt.sv</a>
 │   ├── <a href="./sim/TB_barrel_8_bit.sv">TB_barrel_8_bit.sv</a>
-│   └──<a href="./sim/TB_parametric_barrel_shifter.wcfg">TB_parametric_barrel_shifter_behav.wcfg</a>
+│   └── <a href="./sim/TB_parametric_barrel_shifter.wcfg">TB_parametric_barrel_shifter.wcfg</a>
 │
 ├── constraints/
 │   └── <a href="./constraints/Cmod-S7-25-Master.xdc">Cmod-S7-25-Master.xdc</a>
