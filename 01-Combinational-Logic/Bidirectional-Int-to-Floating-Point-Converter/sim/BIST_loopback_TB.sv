@@ -30,7 +30,6 @@ module BIST_loopback_TB ();
     logic TB_of;
 
     // -- TB variables --
-    //logic [12:0] expected_fp_output;
     int pass_count;
     int fail_count;
 
@@ -53,8 +52,8 @@ module BIST_loopback_TB ();
 
         $display("-- Starting Test Bench --");
 
-        //will iterate through 1000 random values
-        for (int i = -128; i < 128; i++) begin
+        //will iterate through all possible values
+        for (int i = -128; i < 127; i++) begin
             TB_int_input = i;
 
             #1;  //delay to allow calculation time
@@ -62,16 +61,16 @@ module BIST_loopback_TB ();
             // -- pass condition --
             assert ((TB_int_output === TB_int_input) || TB_uf || TB_of) begin
                 pass_count++;
-//                $display(
-//                    "PASS test: \n int input: %b\n fp output: %b\n int output: %b\n uf: %b\n of: %b\n",
-//                    TB_int_input, TB_fp_output, TB_int_output, TB_uf, TB_of);
+                //                $display(
+                //                    "PASS test: \n int input: %b\n fp output: %b\n int output: %b\n uf: %b\n of: %b\n",
+                //                    TB_int_input, TB_fp_output, TB_int_output, TB_uf, TB_of);
             end  // -- fail condition --
             else begin
                 fail_count++;
                 $error("Test %0d Failed.", i);
-//                $display(
-//                    "FAIL test: \n int input: %b\n fp output: %b\n int output: %b\n uf: %b\n of: %b\n",
-//                    TB_int_input, TB_fp_output, TB_int_output, TB_uf, TB_of);
+                //                $display(
+                //                    "FAIL test: \n int input: %b\n fp output: %b\n int output: %b\n uf: %b\n of: %b\n",
+                //                    TB_int_input, TB_fp_output, TB_int_output, TB_uf, TB_of);
             end
 
             #9;  //delay before next loop
