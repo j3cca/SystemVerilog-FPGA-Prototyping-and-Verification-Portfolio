@@ -1,14 +1,18 @@
 # Bidirectional Int to Floating Point Converter
 
 ## Project Overview
-**Description:** For this project, I designed and verified a bidirectional Integer-to-Floating-Point conversion pipeline. This simulates the data-formatting stage of a medical DSP pipeline, where raw 8-bit signed integer sensor data is converted into a high-precision floating-point format for algorithmic processing, and then converted back for hardware output.
+**Description:** For this project, I designed and verified a bidirectional Integer-to-Floating-Point conversion unit. This simulates the data-formatting stage of a medical DSP pipeline, where raw 8-bit signed integer sensor data is converted into a high-precision floating-point format for algorithmic processing, and then converted back for hardware output.
 
-Rather than utilizing the Chu textbook's simplified format, I engineered a custom 13-bit IEEE-esque format. This required routing to handle an implicit hidden mantissa bit and a 4-bit exponent bias, which allows for more data to be contained within fewer bits, increasing the precision and range of the floating point values. I also included overflow and underflow flags in the decoder to account for the asymmetrical limits of 8-bit 2's Complement arithmetic.
+Rather than utilizing the Chu textbook's simplified format, I engineered a custom 13-bit IEEE-esque format.
+
+`[12] Sign | [11:8] Exponent | [7:0] Mantissa`
+
+This required routing to handle an implicit hidden mantissa bit and a 4-bit exponent bias, which allows for more data to be contained within fewer bits, increasing the precision and range of the floating point values. I also included overflow and underflow flags in the decoder to account for the asymmetrical limits of 8-bit 2's Complement arithmetic.
 
 **Block Diagram:** 
 <br>
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/int_to_fp_block_diagram.png)  
-> *The pipeline consists of two main modules. The `int_to_fp` encoder extracts the sign, takes the absolute magnitude, then uses a priority encoder to find the leading '1', which is used to calculate the exponent with bias. I used a barrel shifter to align the mantissa while hiding the leading bit.*
+> *The unit consists of two main modules. The `int_to_fp` encoder extracts the sign, takes the absolute magnitude, then uses a priority encoder to find the leading '1', which is used to calculate the exponent with bias. I used a barrel shifter to align the mantissa while hiding the leading bit.*
 
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/fp_to_int_block_diagram.png)  
 > *The `fp_to_int` decoder reverses this process by un-biasing the exponent, restoring the hidden '1' (or 0 in the case of denormal numbers), shifting the mantissa back into an integer format, and applying a Two's Complement inverter if the original sign bit was negative. It also includes parallel logic to flag underflow (uf) and overflow (of) conditions.*
