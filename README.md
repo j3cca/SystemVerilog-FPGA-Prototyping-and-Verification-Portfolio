@@ -8,8 +8,11 @@ Developed by Jessica Milner during Summer 2026 using "FPGA Prototyping by System
 <br>
 
 ## Table of Contents
-### 01- Combinational Logic
+### 01- Foundational Logic Primatives
 * 4-Bit Greater-Than Comparator
 * 4-to-16 Decoder
+### 02- Data Processing and DSP
 * Multi-Function Parametric Barrel Shifter
 * Bidirectional Int to Floating Point Converter
+### 03- Timing and Control
+* Programmable Stimulation Pulse Controller
