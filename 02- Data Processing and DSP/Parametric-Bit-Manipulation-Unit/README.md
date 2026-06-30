@@ -1,14 +1,14 @@
-# Multi-Function Parametric Barrel Shifter
+# Parametric Bit-Manipulation Unit
 
 ## Project Overview
-**Description:** For this project, I implemented the barrel shifter in two ways: first, using a rotate-right shifter and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. 
+**Description:** For this project, I implemented the shifter unit in two ways: first, using a rotate-right shifter and a rotate-left shifter, second, using only one rotate-right shifter with pre and post-reversing circuits for rotate-left functionality. 
 
 I compared the number of logic cells and the propagation delays of both implementations to determine which implementation used fewer resources. I then parametrized the second implementation to accept any number of input bits, allowing for reusability in future projects.
 
 **Block Diagram:**
 <br>
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png)  
-> *This multi-function barrel shifter accepts an input, an amount to be shifted, and a signal for whether the shift is a left shift or a right shift. Pre and post-reversing circuits allow this multi-function barrel shifter to be constructed using only a single rotate-right shifter, while still allowing the shifting to both the right and left.*
+> *This parametric bit-manipulation unit accepts an input, an amount to be shifted, and a signal for whether the shift is a left shift or a right shift. Pre and post-reversing circuits allow a multi-function shifter to be constructed using only a single rotate-right shifter, while still allowing the shifting to both the right and left.*
 
 ## Simulation
 **Verification Summary:** To verify the functionality of each design, three self-checking testbenches were constructed using for-loops to iterate through 1000 random input combinations, ensuring rigorous correctness. For troubleshooting, $display statements printed the inputs and outputs of each test and whether it passed or failed. 
@@ -58,7 +58,7 @@ My initial goal with implementing this project in two ways was to determine whic
 
 ## Directory Table of Contents
 <pre>
-Multi-Function Parametric Barrel Shifter/
+Parametric Bit-Manipulation Unit/
 │
 ├── src/
 │   ├── <a href="./src/parametric_barrel_shifter.sv">parametric_barrel_shifter.sv</a>
