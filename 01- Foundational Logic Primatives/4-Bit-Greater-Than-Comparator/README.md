@@ -15,7 +15,7 @@ The bitfile was flashed to a CMOD S7 FPGA board. To interface with the FPGA, 8 D
 
 **Block Diagram:**  
 <br>
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_block_diagram.jpg" width="500">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_block_diagram.jpg" width="700">
 > *The 4-bit greater-than comparator accepts two 4-bit inputs (called A and B). The most significant bits of the inputs are fed into both the MSB greater-than comparator and the MSB equal-to comparator. The least significant bits of the inputs are fed into the LSB greater-than comparator.*
 
 > *The outputs of these comparators are joined with glue logic, outputting from the 4-bit module a 1 if A is greater than B, and 0 if A is not greater than B.* 
@@ -52,10 +52,10 @@ $finish called at time : 2560 ns
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_schematic.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_schematic.png" width="800">
 
 **FPGA Utilization:**  
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_utilization.png" width="400">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/greater_4bit_utilization.png" width="600">
 
 ## Directory Table of Contents
 <pre>
