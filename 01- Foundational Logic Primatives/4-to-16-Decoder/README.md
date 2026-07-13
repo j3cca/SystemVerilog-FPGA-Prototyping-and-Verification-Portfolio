@@ -12,7 +12,7 @@ To save space on the breadboard for future additions, a 3-to-8 decoder was const
 
 **Block Diagram:**  
 <br>
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_block_diagram.jpg" width="450">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_block_diagram.jpg" width="600">
 > *The 4-to-16 decoder accepts two inputs as the select bits and two inputs as the enable bits to determine which of the four 2-to-4 decoders to select. The same select bits are fed into each 2-to-4 decoder, and the enable bits are combined using a minimal number of logic gates to select the appropriate decoder, then fed into that decoder.*
 
 > *Each decoder will only output a result when receiving the proper enable signal, so only one decoder outputs at a time.* 
@@ -56,10 +56,10 @@ $finish called at time : 160 ns
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_schematic.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_schematic.png" width="600">
 
 **FPGA Utilization:**  
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_utilization.png" width="400">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/4_to_16_decoder_utilization.png" width="600">
 
 ## Reflection
 Overall, I'm satisfied with my implementation. However, I realized that I could have used another 2-to-4 decoder to transmit the appropriate enable signals rather than using a logic gate implementation. This would make a tree style structure that would be more modular and easier to update for future use.
