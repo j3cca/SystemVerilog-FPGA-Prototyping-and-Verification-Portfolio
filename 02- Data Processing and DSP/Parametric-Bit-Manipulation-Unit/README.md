@@ -7,7 +7,7 @@ I compared the number of logic cells and the propagation delays of both implemen
 
 **Block Diagram:**
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png)  
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_block_diagram.png" width="700"> 
 > *This parametric bit-manipulation unit accepts an input, an amount to be shifted, and a signal for whether the shift is a left shift or a right shift. Pre and post-reversing circuits allow a multi-function shifter to be constructed using only a single rotate-right shifter, while still allowing the shifting to both the right and left.*
 
 ## Simulation
@@ -44,14 +44,14 @@ $finish called at time : 10 us
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic.png" width="800">
 
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic_zoom.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic_zoom.png" width="800">
 
 **FPGA Utilization and Propagation Delay:**  
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png" width="400">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png" width="600">
 
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png" width="400">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png" width="600">
 
 ## Reflection
 My initial goal with implementing this project in two ways was to determine which approach utilized the fewest resources. However, due to innovations in hardware (particularly in this instance, the use of 6-input LUTs) and software (particularly, Vivado's ability to optimize a design), both implementations used the same minimum number of slices. If I was working with an older board or a software with less optimization capability, this exercise would have been more illustrative.
