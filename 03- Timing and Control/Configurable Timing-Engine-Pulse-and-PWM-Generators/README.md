@@ -98,9 +98,11 @@ Configurable Timing Engine: Pulse and PWM Generators/
 │
 ├── src/
 │   ├── <a href="./src/stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
-│   └── <a href="./src/stim_pulse_gen.sv">stim_pulse_gen.sv</a>
+│   └── <a href="./src/pulse_width_modulation.sv">pulse_width_modulation.sv</a>
 │
 ├── sim/
+│   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
+│   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
 │   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
 │   └── <a href="./sim/stim_pulse_gen_behav.wcfg">stim_pulse_gen_behav.wcfg</a>
 │
