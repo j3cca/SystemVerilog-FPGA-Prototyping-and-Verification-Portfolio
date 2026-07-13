@@ -19,7 +19,7 @@ The pulse width modulation (PWM) generator accepts a control signal that determi
 **PWM Generator Block Diagram:** 
 <br>
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  HEREHERE
-> *The design consists of a synchronous cycle counter that acts as a clock divider, and a state machine that tracks the `high_interval` and `low_interval` durations. The logic includes a routing path that forces the output to a safe state if either interval is set to zero, preventing counter underflow.*
+> *The design consists of a synchronous counter that establishes the fixed cycle frequency, and a comparator that evaluates the count against the incoming duty_cycle value. The logic includes a routing path to handle the 0% and 100% boundary conditions, forcing a clean output to prevent glitches at the extremes.*
 
 ## Simulation
 **Verification Summary:** To verify the pulse generator design, I wrote a self-checking testbench in SystemVerilog that exhaustively sweeps all 256 input configurations. 
@@ -30,11 +30,15 @@ Finally, I wrapped the transition checks in parallel `fork...join` watchdogs; if
 
 To verify the PWM generator design, I reused the pulse generator testbench to sweep all 16 possible duty cycle lengths. This was a great demonstration of how modular design can decrease production time.
 
-**Simulation Waveform**
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_simulation_waveforms.png) HEREHERE
+**Pulse Generation Simulation Waveform**
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_waveforms.png)
 > *This image shows the simulation waveform successfully transitioning between dynamic high and low interval configurations, including the handling of zero-interval edge cases.*
 
-**Simulation Log Snippet**
+**PWM Generation Simulation Waveform**
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_waveforms.png)
+> *This image shows the simulation waveform sucessfully outputting a high pulse based on the inputted duty cycle. In cases 0 and 15, the square wave remains low and high respectively.*
+
+**Pulse Generation Simulation Log Snippet**
 <details>
 <summary><i>Click to expand</i></summary>
 
@@ -44,20 +48,26 @@ Test number 0 executing...
 PASS test:
  high = 0
  low = 0
+
 PASS test:
  high = 1
  duration = 1000.000 ns
+
 PASS test:
  low = 1
  duration = 1000.000 ns
+
 Test number 20 executing...
+
 PASS test:
  high = 2
  duration = 2000.000 ns
+
 PASS test:
  low = 10
  duration = 10000.000 ns
 ...
+
 -- Test Bench Summary --
 Pass count: 512
 Fail count: 0
@@ -67,11 +77,17 @@ $finish called at time : 854000 ns
 </details>
 
 ## Implementation  
-**Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_schematic.png)
+**Pulse Generator Schematic:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_schematic.png)
 
-**FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_resource_utilization.png)
+**Pulse Generator FPGA Utilization and Propagation Delay:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_utilization.png)
+
+**PWM Generator Schematic:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_schematic.png)
+
+**PWM Generator FPGA Utilization and Propagation Delay:**  
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_utilization.png)
 
 ## Reflection
 *[Draft your reflection here. You might want to mention your transition from textbook 1-based counting to industry-standard 0-based counting, how you learned to handle synthesis hazards inside asynchronous reset blocks, or your experience learning about parallel threads (`fork...join_any`) and watchdogs for robust verification!]*
