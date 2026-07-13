@@ -11,10 +11,10 @@ This required routing to handle an implicit hidden mantissa bit and a 4-bit expo
 
 **Block Diagram:** 
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/int_to_fp_block_diagram.png)  
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/int_to_fp_block_diagram.png" width="700">  
 > *The unit consists of two main modules. The `int_to_fp` encoder extracts the sign, takes the absolute magnitude, then uses a priority encoder to find the leading '1', which is used to calculate the exponent with bias. I used a barrel shifter to align the mantissa while hiding the leading bit.*
 
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/fp_to_int_block_diagram.png)  
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/fp_to_int_block_diagram.png" width="700"> 
 > *The `fp_to_int` decoder reverses this process by un-biasing the exponent, restoring the hidden '1' (or 0 in the case of denormal numbers), shifting the mantissa back into an integer format, and applying a Two's Complement inverter if the original sign bit was negative. It also includes parallel logic to flag underflow (uf) and overflow (of) conditions.*
 
 ## Simulation
@@ -55,10 +55,10 @@ $finish called at time : 2560 ns
 
 ## Implementation  
 **Schematic:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_schematic.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_schematic.png" width="800">
 
 **FPGA Utilization and Propagation Delay:**  
-<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_resource_utilization.png" width="400">
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_resource_utilization.png" width="600">
 
 ## Reflection
 This project was a great exercise in precision and understanding the design decisions behind different numerical representations and the implications of those decisions. 
