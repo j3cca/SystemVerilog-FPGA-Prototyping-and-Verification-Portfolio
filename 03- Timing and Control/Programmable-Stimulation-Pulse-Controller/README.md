@@ -1,22 +1,37 @@
-# Programmable Stimulation Pulse Controller
+# Configurable Timing Engine: Pulse and PWM Generators
+
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen.gif" alt="Demonstration" width="400"> 
+
+> *The above demonstration is for a square-wave pulse generator. Because the clock is operating at 12MHz, the human eye is unable to distinguish between high and low intervals, which become "averaged" and dim according to the values applied. The above demonstration shows how the pulse generator can act as a dimmer for an LED. The LOW interval is set to 8 and the HIGH interval is set to 1, 2, 4, and 8 respectively.* 
 
 ## Project Overview
-**Description:** For this project, I designed and verified a parameterized square-wave pulse generator. This simulates the pulse-control stage of a device like a neurostimulator or pacemaker, where the hardware must maintain precise, configurable "active" (high) and "rest" (low) intervals to ensure safe energy delivery to tissue.
+**Description:** For this project, I designed and verified two timing engine modules: a parametrized square-wave pulse generator for macro timing control and a parametrized pulse width modulation generator for amplitude control.
 
-Rather than building a free-running oscillator, I engineered a robust timing engine designed to handle the hazards of a safety-critical environment. I implemented defensive counter logic using >= comparisons instead of simple equality checks; this ensures that if a Single Event Upset (bit-flip) occurs or if the interval parameters are updated dynamically by a CPU, the counter cannot "overshoot" and get stuck in an infinite loop. I also included guarded bypass logic to handle edge cases where an interval is set to zero, preventing mathematical underflow and forcing the output to a known safe state.
+The parameterized square-wave pulse generator produces a wave with variable-length high and low intervals. The duration of the intervals is specified by two 4-bit control signals, which are controlled by switches wired to the CMOD S7. The square wave output, for the purpose of demonstration, is wired to an external LED. The design utilizes the CMOD S7's 12MHz onboard crystal oscillator as the clock and onboard button 0 as the asynchronous reset signal.
 
-**Block Diagram:** 
+The pulse width modulation (PWM) generator accepts a control signal that determines the duty cycle of the square wave, which is specified by a 4-bit input wired to switches connected to the device. Like the square-wave pulse generator, this design also utilizes the CMOD S7's 12MHz onboard crystal oscillator as the clock and onboard button 0 as the asynchronous reset signal.
+
+**Pulse Generator Block Diagram:** 
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  
-> *The architecture consists of a synchronous cycle counter that acts as a clock divider, and a state machine that tracks the `high_interval` and `low_interval` durations. The logic includes a bypass routing path that forces the output to a safe state if either interval is set to zero, preventing counter underflow.*
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  HEREHERE
+> *The design consists of a synchronous cycle counter that acts as a clock divider, and a state machine that tracks the `high_interval` and `low_interval` durations. The logic includes a routing path that forces the output to a safe state if either interval is set to zero, preventing counter underflow.*
+
+**PWM Generator Block Diagram:** 
+<br>
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  HEREHERE
+> *The design consists of a synchronous cycle counter that acts as a clock divider, and a state machine that tracks the `high_interval` and `low_interval` durations. The logic includes a routing path that forces the output to a safe state if either interval is set to zero, preventing counter underflow.*
 
 ## Simulation
-**Verification Summary:** To prove the mathematical and timing integrity of the pulse generator, I developed an advanced, self-checking testbench utilizing modern SystemVerilog verification idioms. 
+**Verification Summary:** To verify the pulse generator design, I wrote a self-checking testbench in SystemVerilog that exhaustively sweeps all 256 input configurations. 
 
-The testbench exhaustively sweeps all 256 combinations of the high and low intervals. To prevent delta-cycle race conditions and mid-flight state corruption, the testbench isolates every stimulus by applying an asynchronous reset on the negative clock edge between iterations. Timing verification is handled using `$realtime` measurements evaluated against a floating-point `epsilon` (1 picosecond tolerance) to account for simulation rounding errors. Furthermore, to ensure the testbench is Continuous Integration (CI) safe, I implemented parallel thread watchdogs (`fork...join_any` with `disable fork`) to gracefully catch and report missing pulses without locking up the simulator.
+The testbench drives stimulus changes and de-asserts the reset on the negative clock edge to prevent race conditions with the design's active-high reset. Because the 12 MHz clock has a fractional period 83.333 ns, the testbench uses a 1ns / 1fs timescale and verifies output pulse widths using `$realtime` checks with a 1 ps tolerance to handle rounding errors. 
+
+Finally, I wrapped the transition checks in parallel `fork...join` watchdogs; if a pulse fails to trigger, the watchdog times out instead of hanging the simulator.
+
+To verify the PWM generator design, I reused the pulse generator testbench to sweep all 16 possible duty cycle lengths. This was a great demonstration of how modular design can decrease production time.
 
 **Simulation Waveform**
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_simulation_waveforms.png)
+![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_simulation_waveforms.png) HEREHERE
 > *This image shows the simulation waveform successfully transitioning between dynamic high and low interval configurations, including the handling of zero-interval edge cases.*
 
 **Simulation Log Snippet**
@@ -63,9 +78,10 @@ $finish called at time : 854000 ns
 
 ## Directory Table of Contents
 <pre>
-Parameterized Square Wave Pulse Generator/
+Configurable Timing Engine: Pulse and PWM Generators/
 │
 ├── src/
+│   ├── <a href="./src/stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
 │   └── <a href="./src/stim_pulse_gen.sv">stim_pulse_gen.sv</a>
 │
 ├── sim/
