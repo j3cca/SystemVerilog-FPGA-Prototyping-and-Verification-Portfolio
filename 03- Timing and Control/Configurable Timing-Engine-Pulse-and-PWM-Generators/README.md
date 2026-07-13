@@ -102,12 +102,13 @@ Configurable Timing Engine: Pulse and PWM Generators/
 │
 ├── sim/
 │   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
-│   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
-│   ├── <a href="./sim/TB_stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
-│   └── <a href="./sim/stim_pulse_gen_behav.wcfg">stim_pulse_gen_behav.wcfg</a>
+│   ├── <a href="./sim/TB_PWM.sv">TB_PWM.sv</a>
+│   ├── <a href="./sim/TB_stim_pulse_gen_behav.wcfg">TB_stim_pulse_gen_behav.wcfg</a>
+│   └── <a href="./sim/TB_PWM_behav.wcfg">TB_PWM_behav.wcfg</a>
 │
 ├── constraints/
-│   └── <a href="./constraints/Cmod-S7-25-Master.xdc">Cmod-S7-25-Master.xdc</a>
+│   ├── <a href="./constraints/Cmod-S7-25_stim_pulse_gen.xdc">Cmod-S7-25_stim_pulse_gen.xdc</a>
+│   └── <a href="./constraints/Cmod-S7-25_PWM.xdc">Cmod-S7-25_PWM.xdc</a>
 │
 └── <a href="./README.md">README.md</a>
 </pre>
