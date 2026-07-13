@@ -58,7 +58,7 @@ $finish called at time : 2560 ns
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_schematic.png)
 
 **FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_resource_utilization.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/bidirectional_int_fp_converter_resource_utilization.png" width="400">
 
 ## Reflection
 This project was a great exercise in precision and understanding the design decisions behind different numerical representations and the implications of those decisions. 

@@ -81,13 +81,13 @@ $finish called at time : 854000 ns
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_schematic.png)
 
 **Pulse Generator FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_utilization.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_utilization.png" width="400">
 
 **PWM Generator Schematic:**  
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_schematic.png)
 
 **PWM Generator FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_utilization.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_utilization.png" width="400">
 
 ## Reflection
 *[Draft your reflection here. You might want to mention your transition from textbook 1-based counting to industry-standard 0-based counting, how you learned to handle synthesis hazards inside asynchronous reset blocks, or your experience learning about parallel threads (`fork...join_any`) and watchdogs for robust verification!]*

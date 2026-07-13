@@ -49,9 +49,9 @@ $finish called at time : 10 us
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_schematic_zoom.png)
 
 **FPGA Utilization and Propagation Delay:**  
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_resource_utilization.png" width="400">
 
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png)
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/parametric_barrel_shifter_propagation_delay.png" width="400">
 
 ## Reflection
 My initial goal with implementing this project in two ways was to determine which approach utilized the fewest resources. However, due to innovations in hardware (particularly in this instance, the use of 6-input LUTs) and software (particularly, Vivado's ability to optimize a design), both implementations used the same minimum number of slices. If I was working with an older board or a software with less optimization capability, this exercise would have been more illustrative.
