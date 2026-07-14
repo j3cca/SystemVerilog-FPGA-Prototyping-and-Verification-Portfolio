@@ -13,12 +13,12 @@ The pulse width modulation (PWM) generator accepts a control signal that determi
 
 **Pulse Generator Block Diagram:** 
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  HEREHERE
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/pulse_gen_block_diagram.png" width="700">
 > *The design consists of a synchronous cycle counter that acts as a clock divider, and a state machine that tracks the `high_interval` and `low_interval` durations. The logic includes a routing path that forces the output to a safe state if either interval is set to zero, preventing counter underflow.*
 
 **PWM Generator Block Diagram:** 
 <br>
-![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen_block_diagram.png)  HEREHERE
+<img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_block_diagram.png" width="700">
 > *The design consists of a synchronous counter that establishes the fixed cycle frequency, and a comparator that evaluates the count against the incoming duty_cycle value. The logic includes a routing path to handle the 0% and 100% boundary conditions, forcing a clean output to prevent glitches at the extremes.*
 
 ## Simulation
@@ -26,7 +26,7 @@ The pulse width modulation (PWM) generator accepts a control signal that determi
 
 The testbench drives stimulus changes and de-asserts the reset on the negative clock edge to prevent race conditions with the design's active-high reset. Because the 12 MHz clock has a fractional period 83.333 ns, the testbench uses a 1ns / 1fs timescale and verifies output pulse widths using `$realtime` checks with a 1 ps tolerance to handle rounding errors. 
 
-Finally, I wrapped the transition checks in parallel `fork...join` watchdogs; if a pulse fails to trigger, the watchdog times out instead of hanging the simulator.
+Finally, I wrapped the transition checks in parallel `fork...join_any` watchdogs; if a pulse fails to trigger, the watchdog times out instead of hanging the simulator.
 
 To verify the PWM generator design, I reused the pulse generator testbench to sweep all 16 possible duty cycle lengths. This was a great demonstration of how modular design can decrease production time.
 
@@ -90,7 +90,9 @@ $finish called at time : 854000 ns
 <img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_utilization.png" width="400">
 
 ## Reflection
-*[Draft your reflection here. You might want to mention your transition from textbook 1-based counting to industry-standard 0-based counting, how you learned to handle synthesis hazards inside asynchronous reset blocks, or your experience learning about parallel threads (`fork...join_any`) and watchdogs for robust verification!]*
+This project was a great exercise in shifting from basic value checking testbenches to verifying temporal behavior. Previously, I primarily focused on checking if the DUT's output matched an expected static value. However, because timing precision was what I needed to verify, I learned how to implement `fork...join_any` watchdog threads to catch missing pulses without hanging the simulator, which seems an essential skill for designs where deterministic timing is critical.
+
+I also saw how visual verification of the design on a board belies the actual functioning of the design: for the pulse generator design, the LED appeared to dim like it would for a PWM generator, but the LED was actually flashing so quickly I couldn't see it. This optical averaing made the two designs look nearly identical physically, even though their internal RTL is completely different. This further cements the importance of designing a robust testbench to verify correctness.
 
 ## Directory Table of Contents
 <pre>
