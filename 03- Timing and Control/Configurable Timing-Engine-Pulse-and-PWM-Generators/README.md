@@ -36,7 +36,7 @@ To verify the PWM generator design, I reused the pulse generator testbench to sw
 
 **PWM Generation Simulation Waveform**
 ![image](https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/PWM_waveforms.png)
-> *This image shows the simulation waveform sucessfully outputting a high pulse based on the inputted duty cycle. In cases 0 and 15, the square wave remains low and high respectively.*
+> *This image shows the simulation waveform successfully outputting a high pulse based on the inputted duty cycle. In cases 0 and 15, the square wave remains low and high respectively.*
 
 **Pulse Generation Simulation Log Snippet**
 <details>
@@ -99,7 +99,7 @@ I also saw how visual verification of the design on a board belies the actual fu
 Configurable Timing Engine: Pulse and PWM Generators/
 │
 ├── src/
-│   ├── <a href="./src/stim_pulse_gen.sv">TB_stim_pulse_gen.sv</a>
+│   ├── <a href="./src/stim_pulse_gen.sv">stim_pulse_gen.sv</a>
 │   └── <a href="./src/pulse_width_modulation.sv">pulse_width_modulation.sv</a>
 │
 ├── sim/
