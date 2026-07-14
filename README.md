@@ -15,4 +15,4 @@ Developed by Jessica Milner during Summer 2026 using "FPGA Prototyping by System
 * Parametric Bit-Manipulation Unit
 * Bidirectional Int to Floating Point Converter
 ### 03- Timing and Control
-* Programmable Stimulation Pulse Controller
+* Configurable Timing Engine: Pulse and PWM Generators
