@@ -2,7 +2,7 @@
 
 <img src="https://github.com/j3cca/SystemVerilog-FPGA-Prototyping-and-Verification-Portfolio/blob/main/images/stim_pulse_gen.gif" alt="Demonstration" width="400"> 
 
-> *The above demonstrates the functionality of a square-wave pulse generator. Because the clock is operating at 12MHz, the human eye is unable to distinguish between high and low intervals, which become "averaged" and dim according to the values applied. The above demonstration shows how the pulse generator can act as a dimmer for an LED. The LOW interval is set to 8 and the HIGH interval is set to 1, 2, 4, and 8 respectively.* 
+> *The demonstration above shows the functionality of a square-wave pulse generator. Because the clock is operating at 12MHz, the human eye is unable to distinguish between high and low intervals, which become "averaged" and dim according to the values applied. The above demonstration shows how the pulse generator can act as a dimmer for an LED. The LOW interval is set to 8 and the HIGH interval is set to 1, 2, 4, and 8 respectively.* 
 
 ## Project Overview
 **Description:** For this project, I designed and verified two timing engine modules: a parametrized square-wave pulse generator for macro timing control and a parametrized pulse width modulation generator for amplitude control.
